@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+
+  backend:
+
+    build: ./backend
+
+    container_name: eduquest_backend
+
+    restart: always
+
+    env_file:
+      - ./backend/.env
+
+    ports:
+      - "5000:5000"
+
+  frontend:
+
+    build: ./frontend
+
+    container_name: eduquest_frontend
+
+    restart: always
+
+    depends_on:
+      - backend
+
+    ports:
+      - "3000:80"
+
+  mongo:
+
+    image: mongo:8
+
+    restart: always
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+    mongo_data:
