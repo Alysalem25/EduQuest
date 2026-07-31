@@ -2006,7 +2006,7 @@ export default function AdminTutors() {
           </div>
           <button
             onClick={() => setModal({ type: 'create' })}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 hover:shadow-lg transition-all"
+            className="btn-primary px-5 py-2.5 text-sm"
           >
             <Plus size={16} /> Add Tutor
           </button>

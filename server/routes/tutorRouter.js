@@ -205,11 +205,13 @@ router.post(
   authMiddleware, authorize("admin"),
   async (req, res) => {
     try {
-      const existingTutor = await Tutor.findOne({ email: req.body.email });
-      if (existingTutor) {
-        return res
-          .status(400)
-          .json({ success: false, message: "Email already exists" });
+      if (req.body.email && req.body.email.trim()) {
+        const existingTutor = await Tutor.findOne({ email: req.body.email.trim() });
+        if (existingTutor) {
+          return res
+            .status(400)
+            .json({ success: false, message: "Email already exists" });
+        }
       }
 
       const tutor = await Tutor.create(req.body);

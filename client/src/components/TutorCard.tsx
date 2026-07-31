@@ -1,7 +1,5 @@
 import {
   BadgeCheck,
-  Star,
-  Globe2,
   BookMarked,
   CalendarCheck,
   ChevronDown,
@@ -101,19 +99,6 @@ export default function TutorCard({ tutor, index }: Props) {
           <p className="mt-1 text-sm text-eqraa-brown-dark/65">{tutor.title}</p>
         </div>
 
-        {/* Rating + reviews */}
-        <div className="mt-4 flex items-center justify-center gap-2">
-          <div className="flex items-center gap-1 rounded-full bg-eqraa-beige-light px-3 py-1.5">
-            <Star size={15} className="fill-eqraa-brown text-eqraa-brown" />
-            <span className="text-sm font-bold text-eqraa-brown-dark">
-              {tutor.rating}
-            </span>
-          </div>
-          <span className="text-sm text-eqraa-brown-dark/60">
-            ({tutor.reviews} reviews)
-          </span>
-        </div>
-
         {/* Experience stat */}
         <div className="mt-5 flex justify-center">
           <div className="rounded-2xl bg-eqraa-beige-light px-6 py-3 text-center">
@@ -125,7 +110,7 @@ export default function TutorCard({ tutor, index }: Props) {
           </div>
         </div>
 
-        {/* Subjects + languages */}
+        {/* Subjects */}
         <div className="mt-5 space-y-3">
           <div className="flex items-start gap-2.5">
             <BookMarked
@@ -136,22 +121,9 @@ export default function TutorCard({ tutor, index }: Props) {
               {tutor.subjects.map((s) => (
                 <span
                   key={s}
-                  className="rounded-full bg-eqraa-beige px-2.5 py-1 text-xs font-medium text-eqraa-brown-dark"
+                  className="rounded-full bg-eqraa-beige px-2.5 py-1 text-xs font-medium text-eqraa-brown-dark capitalize"
                 >
                   {s}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="flex items-start gap-2.5">
-            <Globe2 size={16} className="mt-0.5 shrink-0 text-eqraa-brown" />
-            <div className="flex flex-wrap gap-1.5">
-              {tutor.languages.map((l) => (
-                <span
-                  key={l}
-                  className="rounded-full bg-eqraa-beige-light px-2.5 py-1 text-xs font-medium text-eqraa-brown-dark/70 ring-1 ring-eqraa-beige"
-                >
-                  {l}
                 </span>
               ))}
             </div>

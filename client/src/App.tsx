@@ -20,7 +20,7 @@ export default function App() {
             <Route path="/find-tutor2" element={<FindTutor2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/AdminTutors" element={<AdminTutors />} />
-            <Route path="/AdminTutors2" element={<AdminTutors2 />} />
+            <Route path="/AdminDashboard" element={<AdminTutors2 />} />
           </Routes>
         </main>
         <Footer />

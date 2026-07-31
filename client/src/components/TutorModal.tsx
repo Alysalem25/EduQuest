@@ -59,9 +59,7 @@ function validate(form: TutorFormState, mode: 'create' | 'edit'): FormErrors {
   const errors: FormErrors = {};
 
   if (!form.name.trim()) errors.name = 'Name is required.';
-  if (!form.email.trim()) {
-    errors.email = 'Email is required.';
-  } else if (!EMAIL_REGEX.test(form.email.trim())) {
+  if (form.email.trim() && !EMAIL_REGEX.test(form.email.trim())) {
     errors.email = 'Enter a valid email address.';
   }
   if (mode === 'create' && !form.password.trim()) {
@@ -183,7 +181,9 @@ export default function TutorModal({ mode, tutor, isSubmitting, onSubmit, onClos
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Email *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                Email <span className="font-normal text-slate-400">(optional)</span>
+              </label>
               <input
                 type="email"
                 value={form.email}

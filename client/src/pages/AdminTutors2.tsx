@@ -583,9 +583,10 @@ function TutorForm({
               />
             </div>
             <div>
-              <label className={label}>Email *</label>
+              <label className={label}>
+                Email <span className="font-normal text-slate-400">(optional)</span>
+              </label>
               <input
-                required
                 type="email"
                 className={input}
                 value={form.email}
@@ -1133,7 +1134,7 @@ export default function AdminTutors() {
           </div>
           <button
             onClick={() => setModal({ type: "create" })}
-            className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-black bg-amber-800 shadow-sm hover:bg-brand-700 transition-all"
+            className="btn-primary px-5 py-2.5 text-sm"
           >
             <Plus size={16} /> Add Tutor
           </button>
