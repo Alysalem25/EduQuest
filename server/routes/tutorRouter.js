@@ -152,7 +152,6 @@
 
 // module.exports = router;
 
-
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const Tutor = require("../models/Tutor");
@@ -186,7 +185,9 @@ router.get("/:id", async (req, res) => {
   try {
     const tutor = await Tutor.findById(req.params.id).select("-password");
     if (!tutor) {
-      return res.status(404).json({ success: false, message: "Tutor not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Tutor not found" });
     }
     res.json({ success: true, tutor });
   } catch (error) {
@@ -199,19 +200,25 @@ router.get("/:id", async (req, res) => {
  * Create tutor — admin only
  * FIXED: added authMiddleware BEFORE authorize
  */
-router.post("/", authMiddleware, authorize("admin"), async (req, res) => {
-  try {
-    const existingTutor = await Tutor.findOne({ email: req.body.email });
-    if (existingTutor) {
-      return res.status(400).json({ success: false, message: "Email already exists" });
-    }
+router.post(
+  "/",
+  authMiddleware, authorize("admin"),
+  async (req, res) => {
+    try {
+      const existingTutor = await Tutor.findOne({ email: req.body.email });
+      if (existingTutor) {
+        return res
+          .status(400)
+          .json({ success: false, message: "Email already exists" });
+      }
 
-    const tutor = await Tutor.create(req.body);
-    res.status(201).json({ success: true, tutor });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-});
+      const tutor = await Tutor.create(req.body);
+      res.status(201).json({ success: true, tutor });
+    } catch (error) {
+      res.status(500).json({ success: false, message: error.message });
+    }
+  },
+);
 
 /**
  * PUT /tutors/:id
@@ -232,7 +239,9 @@ router.put("/:id", authMiddleware, authorize("admin"), async (req, res) => {
     }).select("-password");
 
     if (!tutor) {
-      return res.status(404).json({ success: false, message: "Tutor not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Tutor not found" });
     }
 
     res.json({ success: true, tutor });
@@ -249,7 +258,9 @@ router.delete("/:id", authMiddleware, authorize("admin"), async (req, res) => {
   try {
     const tutor = await Tutor.findByIdAndDelete(req.params.id);
     if (!tutor) {
-      return res.status(404).json({ success: false, message: "Tutor not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Tutor not found" });
     }
     res.json({ success: true, message: "Tutor deleted successfully" });
   } catch (error) {

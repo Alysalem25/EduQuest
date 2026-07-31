@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Home from '@/pages/Home';
 import FindTutor from '@/pages/FindTutor';
+import FindTutor2 from '@/pages/FindTutor2';
 import Login from './pages/Login';
 import AdminTutors from './pages/AdminTutors';
 import AdminTutors2 from './pages/AdminTutors2';
@@ -16,6 +17,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/find-tutor" element={<FindTutor />} />
+            <Route path="/find-tutor2" element={<FindTutor2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/AdminTutors" element={<AdminTutors />} />
             <Route path="/AdminTutors2" element={<AdminTutors2 />} />

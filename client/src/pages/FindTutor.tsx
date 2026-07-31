@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useMemo, useState , useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Check,
   ChevronRight,
@@ -10,32 +10,83 @@ import {
   Users,
   RotateCcw,
   ArrowRight,
-} from 'lucide-react';
+} from "lucide-react";
 import {
   subjects,
   educationLevels,
   curricula,
-  tutors,
   type SubjectCategory,
   type EducationLevel,
   type Curriculum,
-} from '@/data/catalog';
-import TutorCard from '@/components/TutorCard';
+} from "@/data/catalog";
+import TutorCard from "@/components/TutorCard";
+import apiClient from "@/lib/api";
+
+/* ─── Types ─── */
+interface Tutor {
+  _id: string;
+  name: string;
+  email: string;
+  title: string;
+  avatar: string;
+  country: string;
+  countryFlag: string;
+  verified: boolean;
+  experienceYears: number;
+  subjects: string[];
+  curricula: string[];
+  educationLevels: string[];
+  languages: string[];
+  rating: number;
+  reviews: number;
+  pricePerHour: number;
+  available: boolean;
+  matchPercent: number;
+  students: number;
+  hoursTaught: number;
+  bio: string;
+}
 
 const steps = [
-  { id: 0, label: 'Subject', hint: 'What do you want to learn?' },
-  { id: 1, label: 'Education Level', hint: 'Where are you studying?' },
-  { id: 2, label: 'Curriculum', hint: 'Which curriculum do you follow?' },
+  { id: 0, label: "Subject", hint: "What do you want to learn?" },
+  { id: 1, label: "Education Level", hint: "Where are you studying?" },
+  { id: 2, label: "Curriculum", hint: "Which curriculum do you follow?" },
 ];
 
 export default function FindTutor() {
   const [activeStep, setActiveStep] = useState(0);
-  const [subjectQuery, setSubjectQuery] = useState('');
-  const [selectedSubject, setSelectedSubject] = useState<SubjectCategory | null>(null);
-  const [selectedLevel, setSelectedLevel] = useState<EducationLevel | null>(null);
-  const [selectedCurriculum, setSelectedCurriculum] = useState<Curriculum | null>(null);
+  const [tutors, setTutors] = useState<Tutor>([]);
+  const [subjectQuery, setSubjectQuery] = useState("");
+  const [selectedSubject, setSelectedSubject] =
+    useState<SubjectCategory | null>(null);
+  const [selectedLevel, setSelectedLevel] = useState<EducationLevel | null>(
+    null,
+  );
+  const [selectedCurriculum, setSelectedCurriculum] =
+    useState<Curriculum | null>(null);
   const [searching, setSearching] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+
+  const load = async () => {
+    // setLoading(true);
+    // setError(null);
+    try {
+      const res = await apiClient.get("/tutors");
+      // Backend returns: { success: true, count: N, tutors: [...] }
+      const list = res.data?.tutors ?? [];
+      console.log(list)
+      setTutors(Array.isArray(list) ? list : []);
+    } catch (err: any) {
+      // setError(extractErrorMessage(err));
+      setTutors([]);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
 
   const filteredSubjects = useMemo(() => {
     const q = subjectQuery.trim().toLowerCase();
@@ -45,9 +96,10 @@ export default function FindTutor() {
 
   const matchedTutors = useMemo(() => {
     if (!selectedSubject) return [];
+    console.log(tutors)
     return tutors.filter((t) => {
       const matchesSubject = t.subjects.some(
-        (s) => s.toLowerCase() === selectedSubject.name.toLowerCase()
+        (s) => s.toLowerCase() === selectedSubject.name.toLowerCase(),
       );
       const matchesCurriculum = selectedCurriculum
         ? t.curricula.includes(selectedCurriculum.id)
@@ -84,14 +136,14 @@ export default function FindTutor() {
     window.setTimeout(() => {
       setSearching(false);
       setHasSearched(true);
-      const results = document.getElementById('results');
-      results?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const results = document.getElementById("results");
+      results?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 1600);
   };
 
   const resetSearch = () => {
     setActiveStep(0);
-    setSubjectQuery('');
+    setSubjectQuery("");
     setSelectedSubject(null);
     setSelectedLevel(null);
     setSelectedCurriculum(null);
@@ -116,8 +168,8 @@ export default function FindTutor() {
             Find Your Tutor
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-eqraa-brown-dark/65">
-            Answer three quick questions and we'll match you with verified tutors who fit
-            your exact needs.
+            Answer three quick questions and we'll match you with verified
+            tutors who fit your exact needs.
           </p>
         </div>
       </section>
@@ -128,18 +180,22 @@ export default function FindTutor() {
           <div className="mx-auto max-w-3xl">
             <ol className="flex items-center">
               {steps.map((step, i) => {
-                const isComplete = i < activeStep || (i === activeStep && canAdvance(i));
+                const isComplete =
+                  i < activeStep || (i === activeStep && canAdvance(i));
                 const isActive = i === activeStep;
                 return (
-                  <li key={step.id} className="flex flex-1 items-center last:flex-none">
+                  <li
+                    key={step.id}
+                    className="flex flex-1 items-center last:flex-none"
+                  >
                     <div className="flex flex-col items-center gap-2">
                       <div
                         className={`flex h-11 w-11 items-center justify-center rounded-full border-2 text-sm font-bold transition-all duration-300 ${
                           isComplete
-                            ? 'gradient-brown border-transparent text-white shadow-soft'
+                            ? "gradient-brown border-transparent text-white shadow-soft"
                             : isActive
-                              ? 'border-eqraa-brown bg-white text-eqraa-brown shadow-soft'
-                              : 'border-eqraa-beige-dark bg-white text-eqraa-brown-dark/40'
+                              ? "border-eqraa-brown bg-white text-eqraa-brown shadow-soft"
+                              : "border-eqraa-beige-dark bg-white text-eqraa-brown-dark/40"
                         }`}
                       >
                         {isComplete && i < activeStep ? (
@@ -151,8 +207,8 @@ export default function FindTutor() {
                       <span
                         className={`text-xs font-semibold sm:text-sm ${
                           isActive || isComplete
-                            ? 'text-eqraa-brown-dark'
-                            : 'text-eqraa-brown-dark/40'
+                            ? "text-eqraa-brown-dark"
+                            : "text-eqraa-brown-dark/40"
                         }`}
                       >
                         {step.label}
@@ -162,7 +218,7 @@ export default function FindTutor() {
                       <div className="mx-3 mb-7 h-0.5 flex-1 rounded-full bg-eqraa-beige-dark sm:mx-4">
                         <div
                           className="h-full rounded-full gradient-brown transition-all duration-500"
-                          style={{ width: i < activeStep ? '100%' : '0%' }}
+                          style={{ width: i < activeStep ? "100%" : "0%" }}
                         />
                       </div>
                     )}
@@ -186,7 +242,9 @@ export default function FindTutor() {
                 <h2 className="text-xl font-bold text-eqraa-brown-dark">
                   {steps[activeStep].label}
                 </h2>
-                <p className="text-sm text-eqraa-brown-dark/60">{steps[activeStep].hint}</p>
+                <p className="text-sm text-eqraa-brown-dark/60">
+                  {steps[activeStep].hint}
+                </p>
               </div>
             </div>
 
@@ -215,15 +273,15 @@ export default function FindTutor() {
                         onClick={() => setSelectedSubject(subject)}
                         className={`group flex flex-col items-center gap-3 rounded-3xl border-2 p-5 text-center transition-all duration-300 ${
                           selected
-                            ? 'border-eqraa-brown bg-eqraa-beige shadow-soft'
-                            : 'border-eqraa-beige/70 bg-eqraa-beige-light hover:-translate-y-1 hover:border-eqraa-brown/40 hover:bg-white hover:shadow-soft'
+                            ? "border-eqraa-brown bg-eqraa-beige shadow-soft"
+                            : "border-eqraa-beige/70 bg-eqraa-beige-light hover:-translate-y-1 hover:border-eqraa-brown/40 hover:bg-white hover:shadow-soft"
                         }`}
                       >
                         <div
                           className={`flex h-12 w-12 items-center justify-center rounded-2xl transition-colors ${
                             selected
-                              ? 'gradient-brown text-white'
-                              : 'bg-white text-eqraa-brown shadow-soft group-hover:gradient-brown group-hover:text-white'
+                              ? "gradient-brown text-white"
+                              : "bg-white text-eqraa-brown shadow-soft group-hover:gradient-brown group-hover:text-white"
                           }`}
                         >
                           <subject.icon size={24} />
@@ -259,15 +317,15 @@ export default function FindTutor() {
                       onClick={() => setSelectedLevel(level)}
                       className={`flex items-center gap-4 rounded-3xl border-2 p-6 text-left transition-all duration-300 ${
                         selected
-                          ? 'border-eqraa-brown bg-eqraa-beige shadow-soft'
-                          : 'border-eqraa-beige/70 bg-eqraa-beige-light hover:-translate-y-1 hover:border-eqraa-brown/40 hover:bg-white hover:shadow-soft'
+                          ? "border-eqraa-brown bg-eqraa-beige shadow-soft"
+                          : "border-eqraa-beige/70 bg-eqraa-beige-light hover:-translate-y-1 hover:border-eqraa-brown/40 hover:bg-white hover:shadow-soft"
                       }`}
                     >
                       <div
                         className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-colors ${
                           selected
-                            ? 'gradient-brown text-white'
-                            : 'bg-white text-eqraa-brown shadow-soft'
+                            ? "gradient-brown text-white"
+                            : "bg-white text-eqraa-brown shadow-soft"
                         }`}
                       >
                         <level.icon size={28} />
@@ -302,15 +360,15 @@ export default function FindTutor() {
                       onClick={() => setSelectedCurriculum(curriculum)}
                       className={`flex flex-col gap-3 rounded-3xl border-2 p-6 text-left transition-all duration-300 ${
                         selected
-                          ? 'border-eqraa-brown bg-eqraa-beige shadow-soft'
-                          : 'border-eqraa-beige/70 bg-eqraa-beige-light hover:-translate-y-1 hover:border-eqraa-brown/40 hover:bg-white hover:shadow-soft'
+                          ? "border-eqraa-brown bg-eqraa-beige shadow-soft"
+                          : "border-eqraa-beige/70 bg-eqraa-beige-light hover:-translate-y-1 hover:border-eqraa-brown/40 hover:bg-white hover:shadow-soft"
                       }`}
                     >
                       <div
                         className={`flex h-12 w-12 items-center justify-center rounded-2xl text-lg font-bold transition-colors ${
                           selected
-                            ? 'gradient-brown text-white'
-                            : 'bg-white text-eqraa-brown shadow-soft'
+                            ? "gradient-brown text-white"
+                            : "bg-white text-eqraa-brown shadow-soft"
                         }`}
                       >
                         {curriculum.name.charAt(0)}
@@ -426,8 +484,11 @@ export default function FindTutor() {
           {activeStep === steps.length - 1 && allComplete && !hasSearched && (
             <div className="mx-auto mt-8 max-w-4xl text-center">
               <p className="text-sm text-eqraa-brown-dark/60">
-                All set! Hit <span className="font-semibold text-eqraa-brown">Find Tutors</span> to
-                see your matches.
+                All set! Hit{" "}
+                <span className="font-semibold text-eqraa-brown">
+                  Find Tutors
+                </span>{" "}
+                to see your matches.
               </p>
             </div>
           )}
@@ -449,8 +510,8 @@ export default function FindTutor() {
                 Matching you with tutors…
               </h3>
               <p className="mt-2 text-sm text-eqraa-brown-dark/60">
-                Filtering verified tutors for {selectedSubject?.name}, {selectedLevel?.name},{' '}
-                {selectedCurriculum?.name}.
+                Filtering verified tutors for {selectedSubject?.name},{" "}
+                {selectedLevel?.name}, {selectedCurriculum?.name}.
               </p>
             </div>
           )}
@@ -460,10 +521,12 @@ export default function FindTutor() {
               <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                 <div>
                   <h2 className="text-2xl font-bold text-eqraa-brown-dark sm:text-3xl">
-                    {matchedTutors.length} tutor{matchedTutors.length !== 1 ? 's' : ''} found
+                    {matchedTutors.length} tutor
+                    {matchedTutors.length !== 1 ? "s" : ""} found
                   </h2>
                   <p className="mt-1 text-sm text-eqraa-brown-dark/60">
-                    {selectedSubject?.name} · {selectedLevel?.name} · {selectedCurriculum?.name}
+                    {selectedSubject?.name} · {selectedLevel?.name} ·{" "}
+                    {selectedCurriculum?.name}
                   </p>
                 </div>
                 <button
@@ -488,8 +551,8 @@ export default function FindTutor() {
                   Didn't find the right fit?
                 </h3>
                 <p className="mx-auto mt-2 max-w-md text-sm text-eqraa-brown-dark/60">
-                  Try adjusting your subject, level, or curriculum — new tutors join Eqraa
-                  every week.
+                  Try adjusting your subject, level, or curriculum — new tutors
+                  join Eqraa every week.
                 </p>
                 <div className="mt-5 flex flex-wrap justify-center gap-3">
                   <button onClick={resetSearch} className="btn-primary">
@@ -512,7 +575,11 @@ export default function FindTutor() {
                   Your tutor matches will appear here
                 </h3>
                 <p className="mt-2 text-sm text-eqraa-brown-dark/60">
-                  Complete the three steps above and tap <span className="font-semibold text-eqraa-brown">Find Tutors</span>.
+                  Complete the three steps above and tap{" "}
+                  <span className="font-semibold text-eqraa-brown">
+                    Find Tutors
+                  </span>
+                  .
                 </p>
               </div>
             </div>
