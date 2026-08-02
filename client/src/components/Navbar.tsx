@@ -101,7 +101,7 @@ export default function Navbar() {
           {logutButton && (
             <li>
               <a
-                href="https://eqraa.me/AdminDashboard"
+                href="/AdminDashboard"
                 className="btn-primary ml-3 px-5 py-2.5 text-sm"
                 style={{ backgroundColor: '#8B4513' }}
               >
@@ -169,7 +169,7 @@ export default function Navbar() {
           {logutButton && (
             <li className="mt-2">
               <a
-                href="https://eqraa.me/AdminDashboard"
+                href="/AdminDashboard"
                 className="btn-primary w-full"
                 style={{ backgroundColor: '#8B4513' }}
               >
