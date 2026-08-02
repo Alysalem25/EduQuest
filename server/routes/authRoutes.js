@@ -189,7 +189,7 @@
 //     }
 
 //     // console.log("Login successful");
-    
+
 //     const responseUser = {
 //       id: user._id,
 //       name: user.name,
@@ -197,7 +197,7 @@
 //       role: user.role,
 //       permissions: user.permissions
 //     };
-    
+
 //     // console.log("[Login Response] User data being sent to frontend:", responseUser);
 
 //     // 🔹 Log successful login
@@ -249,7 +249,7 @@
 // router.get("/users", authMiddleware, authorize("admin"), async (req, res, next) => {
 //   try {
 //     const users = await User.find({ _id: { $ne: req.user.id } }).select("-password");
-  
+
 //     res.json({ users });
 //   } catch (err) {
 //     next(err);

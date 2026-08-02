@@ -98,6 +98,17 @@ export default function Navbar() {
               Become a Tutor
             </a>
           </li>
+          {logutButton && (
+            <li>
+              <a
+                href="https://eqraa.me/AdminDashboard"
+                className="btn-primary ml-3 px-5 py-2.5 text-sm"
+                style={{ backgroundColor: '#8B4513' }}
+              >
+                Admin Dashboard
+              </a>
+            </li>
+          )}
           <li>
             {logutButton && (
               <button
@@ -155,6 +166,27 @@ export default function Navbar() {
               Become a Tutor
             </a>
           </li>
+          {logutButton && (
+            <li className="mt-2">
+              <a
+                href="https://eqraa.me/AdminDashboard"
+                className="btn-primary w-full"
+                style={{ backgroundColor: '#8B4513' }}
+              >
+                Admin Dashboard
+              </a>
+            </li>
+          )}
+          {logutButton && (
+            <li className="mt-2">
+              <button
+                className="btn-primary bg-red-700 w-full"
+                onClick={logOutButton}
+              >
+                LogOut
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </header>
