@@ -79,7 +79,7 @@ export default function Navbar() {
                   <>
                     {link.label}
                     <span
-                      className={`absolute inset-x-5 -bottom-0.5 h-0.5 rounded-full bg-eqraa-brown transition-all duration-300 ${
+                      className={`absolute inset-x-5 -bottom-0.5 h-0.5 rounded-full bg-eqraa-beige-dark transition-all duration-300 ${
                         isActive ? "opacity-100" : "opacity-0"
                       }`}
                     />
@@ -103,7 +103,7 @@ export default function Navbar() {
               <a
                 href="/AdminDashboard"
                 className="btn-primary ml-3 px-5 py-2.5 text-sm"
-                style={{ backgroundColor: '#8B4513' }}
+                style={{ backgroundColor: "var(--main-color)" }}
               >
                 Admin Dashboard
               </a>
@@ -112,7 +112,7 @@ export default function Navbar() {
           <li>
             {logutButton && (
               <button
-                className="btn-primary bg-red-700 ml-3 px-5 py-2.5 text-sm"
+                className="btn-primary bg-red-700 hover:bg-red-800 ml-3 px-5 py-2.5 text-sm"
                 onClick={logOutButton}
               >
                 LogOut
@@ -180,7 +180,7 @@ export default function Navbar() {
           {logutButton && (
             <li className="mt-2">
               <button
-                className="btn-primary bg-red-700 w-full"
+                className="btn-primary bg-red-700 hover:bg-red-800 w-full"
                 onClick={logOutButton}
               >
                 LogOut

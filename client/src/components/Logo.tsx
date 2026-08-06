@@ -16,7 +16,7 @@ export default function Logo({ className = '', withWordmark = true }: LogoProps)
       {/* Open book mark */}
       <path
         d="M24 8.5C21 7 16.5 6 12 6.8c-2 .4-3.4 1-4 1.5v28.4c.7-.6 2.1-1.1 4-1.5 4.5-.8 9 .2 12 1.7 3-1.5 7.5-2.5 12-1.7 1.9.4 3.3.9 4 1.5V8.3c-.6-.5-2.1-1.1-4-1.5-4.5-.8-9 .2-12 1.7Z"
-        fill="#6B4A2B"
+        fill="#024f84"
       />
       <path d="M24 8.5v28.4" stroke="#E9D8C3" strokeWidth="1.4" />
       <path d="M16 13.5c-2.4-.4-4.8-.2-6.7.4v9.2c1.9-.6 4.3-.8 6.7-.4v-9.2Z" fill="#E9D8C3" />

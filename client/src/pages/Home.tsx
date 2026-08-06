@@ -15,6 +15,7 @@ import {
   Quote,
 } from 'lucide-react';
 import { popularSubjects } from '@/data/catalog';
+import WhyChooseSwiper from '@/components/WhyChooseSwiper';
 
 const whyChoose = [
   {
@@ -22,24 +23,28 @@ const whyChoose = [
     emoji: '📚',
     title: 'Verified Tutors',
     text: 'Every tutor is background-checked and credential-verified before joining Eqraa.',
+    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
   },
   {
     icon: Target,
     emoji: '🎯',
     title: 'Perfect Matching',
     text: 'Our smart matching pairs each student with the tutor who fits their exact needs.',
+    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
   },
   {
     icon: Laptop,
     emoji: '💻',
     title: 'Online Learning',
     text: 'Learn from anywhere with a seamless virtual classroom and flexible scheduling.',
+    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
   },
   {
     icon: Star,
     emoji: '⭐',
     title: 'High-Quality Education',
     text: 'Rigorously rated lessons ensure consistent, top-tier learning outcomes.',
+    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
   },
 ];
 
@@ -55,13 +60,13 @@ const howItWorks = [
     step: 'Step 2',
     title: 'Choose Education Level',
     text: 'Select the right stage: kindergarten, primary, middle, or high school.',
-  },
+  },  
   {
     icon: BookOpen,
     step: 'Step 3',
     title: 'Choose Curriculum & Book',
     text: 'Match by curriculum — Egyptian National, American, or British (IGCSE) — then book instantly.',
-  },
+  },  
 ];
 
 const testimonials = [
@@ -201,8 +206,8 @@ export default function Home() {
       </section>
 
       {/* ===== Why Choose Eqraa ===== */}
-      <section id="why-choose" className="bg-white py-20 lg:py-28">
-        <div className="container-px">
+      {/* <section id="why-choose" className="bg-white py-20 lg:py-28"> */}
+        {/* <div className="container-px">
           <div className="mx-auto max-w-2xl text-center">
             <span className="section-eyebrow">Why Eqraa</span>
             <h2 className="mt-5 text-3xl font-bold tracking-tight text-eqraa-brown-dark sm:text-4xl">
@@ -222,15 +227,16 @@ export default function Home() {
               >
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-3xl shadow-soft transition-all duration-300 group-hover:gradient-brown group-hover:text-white">
                   <span className="group-hover:hidden">{item.emoji}</span>
-                  <item.icon size={28} className="hidden text-eqraa-brown group-hover:block" />
+                  <item.icon size={28} className="hidden text-white group-hover:block" />
                 </div>
                 <h3 className="mt-6 text-xl font-semibold text-eqraa-brown-dark">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-eqraa-brown-dark/65">{item.text}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </div> */}
+        <WhyChooseSwiper />
+      {/* </section> */}
 
       {/* ===== How It Works ===== */}
       <section className="bg-eqraa-beige-light py-20 lg:py-28">

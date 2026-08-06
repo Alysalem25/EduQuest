@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Home from '@/pages/Home';
-import FindTutor from '@/pages/FindTutor';
+// import FindTutor from '@/pages/FindTutor';
 import FindTutor2 from '@/pages/FindTutor2';
 import Login from './pages/Login';
 import AdminTutors from './pages/AdminTutors';
@@ -16,8 +16,8 @@ export default function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/find-tutor" element={<FindTutor />} />
-            <Route path="/find-tutor2" element={<FindTutor2 />} />
+            {/* <Route path="/find-tutor2" element={<FindTutor />} /> */}
+            <Route path="/find-tutor" element={<FindTutor2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/AdminTutors" element={<AdminTutors />} />
             <Route path="/AdminDashboard" element={<AdminTutors2 />} />

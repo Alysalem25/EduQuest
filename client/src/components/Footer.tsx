@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
 
           {/* Popular subjects */}
-          <div>
+          {/* <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-eqraa-beige">
               Popular Subjects
             </h3>
@@ -85,7 +85,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact */}
           <div>
@@ -111,6 +111,11 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
+          {/* img */}
+          <div>
+           <img src='/books.png' alt='books' className='w-40 h-40 object-contain' />
+           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/15 pt-8 text-center text-sm text-eqraa-beige/70 sm:flex-row sm:text-left">

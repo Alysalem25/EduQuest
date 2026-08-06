@@ -15,6 +15,10 @@
   }
 }
 
+:root {
+  --main-color:rgb(2 79 132);
+}
+
 @layer components {
   .container-px {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
@@ -37,11 +41,11 @@
   }
 
   .gradient-brown {
-    background-image: linear-gradient(135deg, #6B4A2B 0%, #4B3220 100%);
+    background-image: linear-gradient(135deg, var(--main-color) 0%, rgb(11, 57, 113) 100%);
   }
-  .gradient-brown-soft {
-    background-image: linear-gradient(135deg, #8a6a48 0%, #6B4A2B 100%);
-  }
+  /* .gradient-brown-soft {
+    background-image: linear-gradient(135deg, rgb(11, 57, 113) 0%, rgb(11, 57, 113) 100%);
+  } */
 
   .section-eyebrow {
     @apply inline-flex items-center gap-2 rounded-full bg-eqraa-beige px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-eqraa-brown;

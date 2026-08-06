@@ -68,6 +68,16 @@ export const curricula: Curriculum[] = [
   { id: 'egyptian-national', name: 'Egyptian National', description: 'Ministry of Education national curriculum' },
   { id: 'american', name: 'American', description: 'US Common Core / AP / SAT aligned' },
   { id: 'british', name: 'British (IGCSE)', description: 'Cambridge & Edexcel IGCSE / A-Level' },
+  { id: 'qudrat-arabic', name: 'Qudurat Arabic', description: '' },
+  { id: 'qudrat-math', name: 'Qudurat Math', description: ' ' },
+  { id: 'tahsili-math', name: 'Tahsili Mathematics', description: ' ' },
+  { id: 'tahsili-biology', name: 'Tahsili Biology', description: ' ' },
+  { id: 'tahsili-physics', name: 'Tahsili Physics', description: ' ' },
+  { id: 'tahsili-chemistry', name: 'Tahsili Chemistry', description: ' ' },
+  { id: 'maths', name: 'Maths', description: ' ' },
+  { id: 'science', name: 'Science', description: ' ' },
+  { id: 'english', name: 'English', description: ' ' },
+  { id: 'saudi Curriculum', name: 'Saudi Curriculum', description: ' ' },
 ];
 
 export type Tutor = {
