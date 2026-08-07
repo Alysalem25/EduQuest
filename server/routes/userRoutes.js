@@ -14,7 +14,7 @@ router.use(authMiddleware);
 /**
  * GET /users
  * Get all users
- */
+ */ 
 router.get(
   "/",
   // authorize(PERMISSIONS.MANAGE_USERS),

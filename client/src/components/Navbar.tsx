@@ -101,7 +101,7 @@ export default function Navbar() {
           {logutButton && (
             <li>
               <a
-                href="/AdminDashboard"
+                href="/AdminTutors"
                 className="btn-primary ml-3 px-5 py-2.5 text-sm"
                 style={{ backgroundColor: "var(--main-color)" }}
               >
@@ -169,7 +169,7 @@ export default function Navbar() {
           {logutButton && (
             <li className="mt-2">
               <a
-                href="/AdminDashboard"
+                href="/AdminTutors"
                 className="btn-primary w-full"
                 style={{ backgroundColor: '#8B4513' }}
               >
