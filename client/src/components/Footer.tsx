@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, MessageCircle, ArrowRight } from 'lucide-react';
-import Logo from './Logo';
+import { Mail, Phone, MapPin, MessageCircle, ArrowRight } from 'lucide-react';
 
 const quickLinks = [
   { to: '/', label: 'Home' },
@@ -9,14 +8,6 @@ const quickLinks = [
 
 const subjects = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'Programming'];
 
-const socials = [
-  { icon: Facebook, label: 'Facebook', href: '#' },
-  { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: Twitter, label: 'Twitter', href: '#' },
-  { icon: Linkedin, label: 'LinkedIn', href: '#' },
-  { icon: MessageCircle, label: 'WhatsApp', href: 'https://wa.me/201038232883' },
-];
-
 export default function Footer() {
   return (
     <footer className="gradient-brown text-eqraa-beige-light">
@@ -24,25 +15,15 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="rounded-2xl bg-white/95 p-3 inline-flex">
-              <Logo className="h-9 w-auto" />
-            </div>
+            <img
+              src="https://res.cloudinary.com/dyissekq4/image/upload/v1785086997/cropped-circle-image_yu8fv1.png"
+              alt="Eqraa logo"
+              className="h-16 w-auto"
+            />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-eqraa-beige/80">
               Eqraa connects parents and students with verified, experienced tutors for
               every subject, level, and curriculum — all in one trusted place.
             </p>
-            <div className="mt-6 flex gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-eqraa-beige transition-all duration-300 hover:bg-white hover:text-eqraa-brown-dark hover:-translate-y-0.5"
-                >
-                  <s.icon size={18} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick links */}
@@ -103,6 +84,12 @@ export default function Footer() {
                 <Phone size={18} className="mt-0.5 shrink-0 text-eqraa-beige" />
                 <a href="tel:+201038232883" className="transition-colors hover:text-white">
                   +20 103 823 2883
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <MessageCircle size={18} className="mt-0.5 shrink-0 text-eqraa-beige" />
+                <a href="https://wa.me/201038232883" className="transition-colors hover:text-white" target="_blank" rel="noreferrer">
+                  WhatsApp
                 </a>
               </li>
               <li className="flex items-start gap-3">

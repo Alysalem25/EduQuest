@@ -65,73 +65,84 @@ export default function TutorCard({ tutor, index }: Props) {
 
   return (
     <article
-      className="overflow-hidden rounded-4xl bg-white shadow-soft transition-all duration-300 hover:shadow-soft-lg"
+      className="group overflow-hidden rounded-3xl bg-gradient-to-br from-white to-eqraa-beige-light/30 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-white/50"
       style={{
         animation: `fade-up 0.6s cubic-bezier(0.22,1,0.36,1) ${index * 90}ms both`,
       }}
     >
-      {/* Profile image + top overlay */}
-      <div className="relative">
-        <div className="h-44 bg-gradient-to-br from-eqraa-beige to-eqraa-beige-dark/60" />
-        <SmartImage
-          src={tutor.avatar}
-          alt={tutor.name}
-          className="absolute left-1/2 top-6 h-28 w-28 -translate-x-1/2 rounded-2xl object-cover shadow-soft-lg ring-4 ring-white"
-          loading="lazy"
-        />
+      {/* Premium header badge */}
+      <div className="absolute top-3 right-3 z-10">
+        {tutor.verified && (
+          <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md rounded-full px-3 py-1.5 shadow-md">
+            <BadgeCheck size={16} className="text-amber-500" />
+            <span className="text-xs font-semibold text-eqraa-brown">Verified</span>
+          </div>
+        )}
       </div>
 
-      <div className="px-6 pb-6 pt-16">
-        {/* Name + verified */}
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-1.5">
-            <h3 className="text-xl font-bold text-eqraa-brown-dark">
-              {tutor.name}
-            </h3>
-            {tutor.verified && (
-              <BadgeCheck
-                size={20}
-                className="text-eqraa-brown"
-                aria-label="Verified tutor"
+      {/* Gradient background header */}
+      <div className="h-24 bg-gradient-to-r from-eqraa-brown/10 via-eqraa-beige to-eqraa-brown/5 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-eqraa-brown/5 blur-3xl" />
+        </div>
+      </div>
+
+      {/* Avatar - more prominent and modern */}
+      <div className="px-6 pb-4">
+        <div className="relative -mt-12 mb-4">
+          <div className="mx-auto w-fit">
+            <div className="relative inline-block">
+              <SmartImage
+                src={tutor.avatar}
+                alt={tutor.name}
+                className="h-24 w-24 rounded-2xl object-cover shadow-xl ring-4 ring-white group-hover:ring-eqraa-brown/30 transition-all duration-300"
+                loading="lazy"
               />
-            )}
-          </div>
-          <p className="mt-1 text-sm text-eqraa-brown-dark/65">{tutor.title}</p>
-        </div>
-
-        {/* Experience stat */}
-        <div className="mt-5 flex justify-center">
-          <div className="rounded-2xl bg-eqraa-beige-light px-6 py-3 text-center">
-            <CalendarCheck size={16} className="mx-auto text-eqraa-brown" />
-            <p className="mt-1 text-sm font-bold text-eqraa-brown-dark">
-              {tutor.experienceYears}y
-            </p>
-            <p className="text-[11px] text-eqraa-brown-dark/55">Experience</p>
-          </div>
-        </div>
-
-        {/* Subjects */}
-        <div className="mt-5 space-y-3">
-          <div className="flex items-start gap-2.5">
-            <BookMarked
-              size={16}
-              className="mt-0.5 shrink-0 text-eqraa-brown"
-            />
-            <div className="flex flex-wrap gap-1.5">
-              {tutor.subjects.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full bg-eqraa-beige px-2.5 py-1 text-xs font-medium text-eqraa-brown-dark capitalize"
-                >
-                  {s}
-                </span>
-              ))}
+              {tutor.available && (
+                <div className="absolute bottom-0 right-0 h-5 w-5 rounded-full bg-emerald-500 ring-2 ring-white" />
+              )}
             </div>
           </div>
         </div>
 
+        {/* Name + title */}
+        <div className="text-center mb-4">
+          <h3 className="text-lg font-bold text-eqraa-brown-dark">
+            {tutor.name}
+          </h3>
+          <p className="text-sm text-eqraa-brown/70 font-medium">{tutor.title}</p>
+        </div>
+
+        {/* Quick stats */}
+        <div className="mb-4">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-2.5 text-center hover:bg-eqraa-beige/50 transition-colors">
+            <p className="text-xs text-eqraa-brown-dark/60">Experience</p>
+            <p className="text-sm font-bold text-eqraa-brown">{tutor.experienceYears} years</p>
+          </div>
+        </div>
+
+        {/* Subjects - refined tag style */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-eqraa-brown-dark/70 mb-2">Subjects</p>
+          <div className="flex flex-wrap gap-1.5">
+            {tutor.subjects.slice(0, 3).map((s) => (
+              <span
+                key={s}
+                className="inline-flex items-center rounded-full bg-eqraa-brown/10 px-2.5 py-1 text-xs font-medium text-eqraa-brown capitalize hover:bg-eqraa-brown/20 transition-colors"
+              >
+                {s}
+              </span>
+            ))}
+            {tutor.subjects.length > 3 && (
+              <span className="inline-flex items-center rounded-full bg-eqraa-beige px-2.5 py-1 text-xs font-medium text-eqraa-brown-dark">
+                +{tutor.subjects.length - 3}
+              </span>
+            )}
+          </div>
+        </div>
+
         {/* Bio */}
-        <div className="mt-5">
+        <div className="mb-4">
           <p
             className={`text-sm leading-relaxed text-eqraa-brown-dark/70 ${
               expanded ? "" : "line-clamp-2"
@@ -139,52 +150,54 @@ export default function TutorCard({ tutor, index }: Props) {
           >
             {tutor.bio}
           </p>
-          <button
-            onClick={() => setExpanded((v) => !v)}
-            className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-eqraa-brown transition-colors hover:text-eqraa-brown-dark"
-          >
-            {expanded ? "Show less" : "Read More"}
-            <ChevronDown
-              size={14}
-              className={`transition-transform ${expanded ? "rotate-180" : ""}`}
-            />
-          </button>
+          {tutor.bio.length > 80 && (
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="mt-1.5 text-xs font-semibold text-eqraa-brown hover:text-eqraa-brown-dark transition-colors inline-flex items-center gap-1"
+            >
+              {expanded ? "Show less" : "Read more"}
+              <ChevronDown
+                size={12}
+                className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+              />
+            </button>
+          )}
         </div>
 
-        {/* Availability + price */}
-        <div className="mt-5 flex items-center justify-between rounded-2xl bg-eqraa-beige-light px-4 py-3">
-          <span
-            className={`inline-flex items-center gap-1.5 text-xs font-semibold ${
-              tutor.available ? "text-emerald-700" : "text-eqraa-brown-dark/50"
-            }`}
-          >
+        {/* Price and availability */}
+        <div className="flex items-center justify-between mb-4 pb-4 border-t border-eqraa-beige/50">
+          <div className="pt-4">
+            <p className="text-xs text-eqraa-brown-dark/60">Price per hour</p>
+            <p className="text-xl font-bold text-eqraa-brown">{tutor.pricePerHour} EGP</p>
+          </div>
+          <div className="pt-4">
             <span
-              className={`h-2 w-2 rounded-full ${
-                tutor.available ? "bg-emerald-500" : "bg-eqraa-brown-dark/30"
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${
+                tutor.available
+                  ? "bg-emerald-100/70 text-emerald-700"
+                  : "bg-eqraa-beige-light text-eqraa-brown-dark/50"
               }`}
-            />
-            {tutor.available ? "Available now" : "Fully booked"}
-          </span>
-          <div className="text-right">
-            <span className="text-lg font-bold text-eqraa-brown">
-              {tutor.pricePerHour} EGP
+            >
+              <span
+                className={`h-2 w-2 rounded-full ${
+                  tutor.available ? "bg-emerald-500" : "bg-eqraa-brown-dark/30"
+                }`}
+              />
+              {tutor.available ? "Available" : "Fully booked"}
             </span>
-            <span className="text-xs text-eqraa-brown-dark/55">/hour</span>
           </div>
         </div>
 
-        {/* Actions */}
-        <div className="mt-5">
-          <a
-            href={`https://wa.me/201038232883?text=${encodeURIComponent(`Hi, I'd like to book a session with ${tutor.name}.`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary w-full"
-          >
-            <Calendar size={18} />
-            Book Now
-          </a>
-        </div>
+        {/* Action button - modern style */}
+        <a
+          href={`https://wa.me/201038232883?text=${encodeURIComponent(`Hi, I'd like to book a session with ${tutor.name}.`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-eqraa-brown to-eqraa-brown-dark text-white font-semibold py-3 rounded-2xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 group/btn"
+        >
+          <Calendar size={18} className="group-hover/btn:rotate-12 transition-transform" />
+          <span>Book Now</span>
+        </a>
       </div>
     </article>
   );

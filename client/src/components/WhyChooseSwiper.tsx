@@ -308,8 +308,9 @@
 
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Target, Laptop, Star } from 'lucide-react';
+import { ShieldCheck, Target, Laptop, Star, CalendarDays } from 'lucide-react';
 
 const whyChoose = [
   {
@@ -317,35 +318,35 @@ const whyChoose = [
     emoji: '📚',
     title: 'Verified Tutors',
     text: 'Every tutor is background-checked and credential-verified before joining Eqraa.',
-    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
+    img: 'https://res.cloudinary.com/dyissekq4/image/upload/v1786696705/image-1_zxvwv9.jpg',
   },
   {
     icon: Target,
     emoji: '🎯',
     title: 'Perfect Matching',
     text: 'Our smart matching pairs each student with the tutor who fits their exact needs.',
-    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
+    img: 'https://res.cloudinary.com/dyissekq4/image/upload/v1786696705/Islam_Abbas_smpvrh.jpg',
   },
   {
-    icon: Target,
+    icon: CalendarDays,
     emoji: '🎯',
-    title: 'Perfect Matching',
-    text: 'Our smart matching pairs each student with the tutor who fits their exact needs.',
-    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
+    title: 'Instant Booking',
+    text: 'Book anytime, anywhere.',
+    img: 'https://res.cloudinary.com/dyissekq4/image/upload/v1786696705/NOOR_MOHAMED_uhue5m.jpg',
   },
   {
     icon: Laptop,
     emoji: '💻',
     title: 'Online Learning',
     text: 'Learn from anywhere with a seamless virtual classroom and flexible scheduling.',
-    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
+    img: 'https://res.cloudinary.com/dyissekq4/image/upload/v1786696704/image_fhav7k.jpg',
   },
   {
     icon: Star,
     emoji: '⭐',
     title: 'High-Quality Education',
     text: 'Rigorously rated lessons ensure consistent, top-tier learning outcomes.',
-    img: 'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=900',
+    img: 'https://res.cloudinary.com/dyissekq4/image/upload/v1786696449/ALAA_KHALIL1_kbi3hq.jpg',
   },
 ];
 
@@ -355,6 +356,7 @@ const whyChoose = [
 /* ------------------------------------------------------------------ */
 
 export default function WhyChooseSwiper() {
+  const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState(1);
@@ -539,7 +541,8 @@ export default function WhyChooseSwiper() {
               >
                 {/* Card */}
                 <div
-                  className={`relative h-[500px] overflow-hidden rounded-[2.2rem] border transition-all duration-700 ${
+                  onClick={() => navigate('/find-tutor')}
+                  className={`relative h-[500px] overflow-hidden rounded-[2.2rem] border transition-all duration-700 cursor-pointer ${
                     isActive
                       ? 'border-eqraa-brown/20 bg-white shadow-[0_25px_60px_-15px_rgba(139,90,43,0.18)]'
                       : 'border-eqraa-beige/50 bg-eqraa-beige-light/50 shadow-soft'
@@ -554,8 +557,6 @@ export default function WhyChooseSwiper() {
                       animate={isActive ? { scale: 1 } : { scale: 1.12 }}
                       transition={{ duration: 0.8, ease: 'easeOut' }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-eqraa-brown-dark/80 via-eqraa-brown-dark/25 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-eqraa-brown/15 to-transparent" />
 
                     {/* Floating icon */}
                     <motion.div
@@ -591,7 +592,7 @@ export default function WhyChooseSwiper() {
                     <div className="mt-5 flex items-center gap-2">
                       <div className="h-1 w-10 rounded-full bg-eqraa-brown/30" />
                       <span className="text-xs font-medium text-eqraa-brown/50">
-                        Eqraa Quality
+                        Eqraa.me
                       </span>
                     </div>
                   </div>

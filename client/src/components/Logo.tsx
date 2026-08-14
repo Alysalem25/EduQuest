@@ -1,41 +1,13 @@
 type LogoProps = {
   className?: string;
-  withWordmark?: boolean;
 };
 
-export default function Logo({ className = '', withWordmark = true }: LogoProps) {
+export default function Logo({ className = '' }: LogoProps) {
   return (
-    <svg
+    <img
+      src="https://res.cloudinary.com/dyissekq4/image/upload/v1784989503/logo_l6jizw.webp"
+      alt="Eqraa logo"
       className={className}
-      viewBox="0 0 180 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Eqraa logo"
-    >
-      {/* Open book mark */}
-      <path
-        d="M24 8.5C21 7 16.5 6 12 6.8c-2 .4-3.4 1-4 1.5v28.4c.7-.6 2.1-1.1 4-1.5 4.5-.8 9 .2 12 1.7 3-1.5 7.5-2.5 12-1.7 1.9.4 3.3.9 4 1.5V8.3c-.6-.5-2.1-1.1-4-1.5-4.5-.8-9 .2-12 1.7Z"
-        fill="#024f84"
-      />
-      <path d="M24 8.5v28.4" stroke="#E9D8C3" strokeWidth="1.4" />
-      <path d="M16 13.5c-2.4-.4-4.8-.2-6.7.4v9.2c1.9-.6 4.3-.8 6.7-.4v-9.2Z" fill="#E9D8C3" />
-      <path d="M32 13.5c2.4-.4 4.8-.2 6.7.4v9.2c-1.9-.6-4.3-.8-6.7-.4v-9.2Z" fill="#E9D8C3" />
-      <path d="M16 25.8c-2.4-.4-4.8-.2-6.7.4v6.9c1.9-.6 4.3-.8 6.7-.4v-6.9Z" fill="#E9D8C3" />
-      <path d="M32 25.8c2.4-.4 4.8-.2 6.7.4v6.9c-1.9-.6-4.3-.8-6.7-.4v-6.9Z" fill="#E9D8C3" />
-      {withWordmark && (
-        <text
-          x="56"
-          y="32"
-          fontFamily="Poppins, sans-serif"
-          fontSize="24"
-          fontWeight="700"
-          fill="#4B3220"
-          letterSpacing="0.5"
-        >
-          Eqraa
-        </text>
-      )}
-    </svg>
+    />
   );
 }

@@ -282,12 +282,15 @@ export default function Home() {
             ))}
           </div>
 
-          {/* <div className="mt-14 text-center">
-            <Link to="/find-tutor" className="btn-primary">
-              Start Your Search
+          <div className="mt-14 text-center">
+            <Link
+              to="/find-tutor"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-eqraa-brown px-8 py-4 text-base font-semibold text-white shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft-lg"
+            >
+              Find Your Tutor
               <ArrowRight size={18} />
             </Link>
-          </div> */}
+          </div>
         </div>
       </section>
 
@@ -376,34 +379,6 @@ export default function Home() {
         </div>
       </section> */}
 
-      {/* ===== CTA band ===== */}
-      <section className="bg-white py-16">
-        <div className="container-px">
-          <div className="relative overflow-hidden rounded-[2.5rem] gradient-brown px-8 py-14 text-center shadow-soft-lg lg:px-16 lg:py-20">
-            <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden>
-              <div className="absolute -left-10 -top-10 h-48 w-48 rounded-full bg-white/20 blur-2xl" />
-              <div className="absolute -bottom-12 right-10 h-56 w-56 rounded-full bg-eqraa-beige/20 blur-2xl" />
-            </div>
-            <div className="relative">
-              <ClipboardList size={40} className="mx-auto text-eqraa-beige" />
-              <h2 className="mt-5 text-3xl font-bold text-white sm:text-4xl">
-                Ready to find your tutor?
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-eqraa-beige/85">
-                Take the first step today. Answer three quick questions and meet verified
-                tutors matched to your exact needs.
-              </p>
-              <Link
-                to="/find-tutor"
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-semibold text-eqraa-brown-dark shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft-lg"
-              >
-                Find Your Tutor
-                <ArrowRight size={20} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

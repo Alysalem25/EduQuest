@@ -6,7 +6,6 @@ import Home from '@/pages/Home';
 import FindTutor2 from '@/pages/FindTutor2';
 import Login from './pages/Login';
 import AdminTutors from './pages/AdminTutors';
-import AdminTutors2 from './pages/AdminTutors2';
 
 export default function App() {
   return (
@@ -20,7 +19,7 @@ export default function App() {
             <Route path="/find-tutor" element={<FindTutor2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/AdminTutors" element={<AdminTutors />} />
-            <Route path="/AdminDashboard" element={<AdminTutors2 />} />
+            <Route path="/AdminDashboard" element={<AdminTutors />} />
           </Routes>
         </main>
         <Footer />

@@ -57,7 +57,7 @@ export default function Navbar() {
     >
       <nav className="container-px flex h-20 items-center justify-between">
         <Link to="/" className="flex items-center" aria-label="Eqraa home">
-          <Logo className="h-9 w-auto" />
+          <Logo className="h-16 w-auto" />
         </Link>
 
         {/* Desktop nav */}
