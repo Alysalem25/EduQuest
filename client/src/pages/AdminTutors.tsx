@@ -241,8 +241,7 @@ function TutorCard({
 
       <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-2">
         <span className="text-xs font-semibold text-slate-800 flex items-center gap-0.5">
-          <DollarSign size={12} />
-          {tutor.pricePerHour}
+          {tutor.pricePerHour} EGP
           <span className="text-slate-400 font-normal">/hr</span>
         </span>
         <span
@@ -447,6 +446,7 @@ const CURRICULA = [
   { id: "science", name: "Science", description: " " },
   { id: "english", name: "English", description: " " },
   { id: "saudi Curriculum", name: "Saudi Curriculum", description: " " },
+  { id: "uae-curriculum", name: "UAE Curriculum", description: "UAE Ministry of Education curriculum" },
 ] as const;
 
 // --- Types ---
@@ -640,7 +640,7 @@ function TutorForm({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className={label}>Price / Hour ($) *</label>
+              <label className={label}>Price / Hour (EGP) *</label>
               <input
                 required
                 type="number"
@@ -947,7 +947,7 @@ function ViewModal({ tutor, onClose }: { tutor: Tutor; onClose: () => void }) {
             {tutor.languages.join(", ") || "—"}
           </p>
           <p>
-            <span className="font-semibold">Price:</span> ${tutor.pricePerHour}
+            <span className="font-semibold">Price:</span> {tutor.pricePerHour} EGP
             /hr
           </p>
           <p>

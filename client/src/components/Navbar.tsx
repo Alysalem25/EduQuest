@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import Logo from "./Logo";
 import { isAuthenticated, logout } from "@/lib/auth";
 import { useNavigate, Navigate } from "react-router-dom";
 
@@ -56,8 +55,15 @@ export default function Navbar() {
       }`}
     >
       <nav className="container-px flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center" aria-label="Eqraa home">
-          <Logo className="h-16 w-auto" />
+        <Link to="/" className="flex items-center gap-2" aria-label="Eqraa home">
+          <img
+            src="https://res.cloudinary.com/dyissekq4/image/upload/v1787235449/Squaredlogo-removebg-preview_cl8p5o.png"
+            alt="Eqraa Logo"
+            className="h-16 w-auto"
+          />
+          <span style={{ color: '#5C3D14', fontWeight: 'bold', fontSize: '1.5rem' }}>
+            Eqraa
+          </span>
         </Link>
 
         {/* Desktop nav */}

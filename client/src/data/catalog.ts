@@ -75,6 +75,7 @@ export const curricula: Curriculum[] = [
   { id: 'tahsili-physics', name: 'Tahsili Physics', description: ' ' },
   { id: 'tahsili-chemistry', name: 'Tahsili Chemistry', description: ' ' },
   { id: 'saudi Curriculum', name: 'Saudi Curriculum', description: ' ' },
+  { id: 'uae-curriculum', name: 'UAE Curriculum', description: ' ' },
 ];
 
 export type Tutor = {
